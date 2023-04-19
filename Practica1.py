@@ -36,6 +36,56 @@ def esta_en_rango(longitud_onda):
 def tiene_descuento(edad):
     return (edad <= 12) or (edad >= 60)
 
+
+
+#Ejercicio 9
+def funcion_xor(a,b):
+    if a == "V" and b == "V" or a == "F" and b == "F":
+        return "F"
+    else:
+        return "V"
+print (funcion_xor("V","V"))
+print (funcion_xor("V","F"))
+print (funcion_xor("F","V"))
+print (funcion_xor("F","F"))
+
+
+#Ejercicio 10
+def saludar_persona(nombre, apellido):
+    resultado_10 = nombre + " " + apellido
+    return "Buenas tardes " + resultado_10
+print (saludar_persona("matias","cadena"))
+
+
+#Ejercicio 11
+def largo_de_palabra_si_empieza_con_h (palabra):
+    if palabra[0] == "H":
+        return len(palabra) 
+    else:
+        return "la palabra no empieza con H"
+print (largo_de_palabra_si_empieza_con_h ("Holis"))
+print (largo_de_palabra_si_empieza_con_h ("buenas"))
+
+#Ej 11.2 (otra forma de hacerlo)
+def largo_de_palabra_si_empieza_con_h (palabra):
+    return len(palabra) if palabra.startswith("H") else False
+print (largo_de_palabra_si_empieza_con_h ("Holis"))
+print (largo_de_palabra_si_empieza_con_h ("buenas"))
+
+
+#Ejercicio 12
+def empieza_con_buenos(palabra):
+    return palabra.startswith ("Buenos") or palabra.startswith ("Buenos")
+print(empieza_con_buenos("Buenos días"))
+print(empieza_con_buenos("Hola"))
+
+
+#Ejercicio 13
+def es_multiplo(numero_1,numero_2):
+    return numero_2 % numero_1 == 0
+print (es_multiplo(3,108))
+
+
 #14
 def numero_par_impar_cero (numero1):
     if numero1  == 0:
