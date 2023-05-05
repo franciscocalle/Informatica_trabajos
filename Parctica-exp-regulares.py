@@ -73,18 +73,34 @@ print(entre_guiones(string))
 #ej 10
 import re
 
-def get:substr(string)
+def get_substr(string):
 return re.findall("[@|&](.*?)[@|&]")
+
+ 
+#EJERCICIO 10
+string10= "hola @ como estas & bien"
+def get_substr(string):
+    patron = "[@|&] (.*?) [@|&]"
+    return re.findall(patron,string10)
+
+print(get_substr(string10))
 
 #ej 11
 import re
 
-def dos_P(lista)
+def dos_P(lista):
     for elemento in lista:
         resultado = re.match("(P\w*)\W(P\w*)", elemento)
         if resultado is not None:
             print(resultado.group())
     
 lista 
+
+#ej15
+import re 
+def mail_correcto(string):
+    return bool(re.search('^?\W+[.-_]?\W*@[a-z]+[.][a-z]+[.]?[a-z]?$' ,string))
+print(mail_correcto('salva-burgos@gmail.com'))
+           
 
 #con el \W le indicas lo del espacio porque es un caracter no alfanumerico, lo podes hacer tambien con \S
