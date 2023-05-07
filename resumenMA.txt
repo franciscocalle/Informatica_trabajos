@@ -1,0 +1,95 @@
+Existen 2 tipos de archivos para python: ejecutable (el q podes usar como código); de lectura (python lo puede leer todo en una linea o linea x linea)
+Hay q cerrar los archivos sino consumen mucho
+Open (toma como parametro un path que es un string que te dice la ubicacion de mi archivo en la computadora , modo es la forma en que vas a modificar ese archivo es un string): se usa para abrir un archivo. Despues hay q acordarse de cerrarlo. Los strings llevan comilla
+modo de apertura: r, para leer; a, lo abre y agrega info; w abre un arch para escritura
+El w sobreescribe, entonces te puede borrar lo que estaba antes
+
+Archivo.close () : cierro el archivo
+Una forma de cerrar el archivo y que despues se cierre solo:
+
+with open(path_al_archivo, modo) as miarch:
+    #Aquí van las líneas de procesamiento del archivo
+Se mantiene abierto unicamente por el timpo q lo estas usando
+
+Como correr un script:
+1- genero un archivo .py
+2- agrego el codigo a mi_arch (del paso 1)
+3-GUARDO  los cambios
+4-abrir la terminal
+5-verifico q mi script esta en esa carpeta (ls)
+6-escribir en la terminal (de bash): python nombre_del_archivo
+
+
+
+
+
+CLASE 3
+La apertura y lectura/escritura en python se hace en 2 pasos. Son pasos independientes
+arch = open(hola.txt)
+print(arch.read()) → asi lo lee. Si no pongo el read te tira otra cosa
+Hay diferentes funciones para leer un archivo
+El read() lo lee completo, como si fuese un unico string
+Readlines(): lee linea por linea. Te devuelve una lista entre corchetes, y para mostrar que pasas de renglon te pone un “/n” que seria el enter. [hola/n, chau[
+
+Si queres que python lea un archivo, este asume que esta en ese directorio. Pero si esta en otro, le tenes que pasar el path para que llegue a encontrarlo
+~: esto quiere decir home/user
+Si escribis todo, se llama path o ruta absoluta
+Si usas el ~, es un path o ruta relativa. Tambien podes usar el punto: ./doc/hola.txt
+EN EL EXAMEN USAR EL PATH RELATIVO, PORQUE SI PONES EL ABSOLUTO CUANDO LO BAJAN A OTRA COMPUTADORA SE ROMPE PORQUE NO ENCUENTRA EL USUARIO, EN CAMBIO CON EL RELATIVO NO TENES ESPECIFICADO EL USUARIO.
+
+Escribir el path en windows: “C:/home/……” -- la barra es para el otro lado en windows
+Con cd.. te vas moviendo para atras en las carpetas o archivos
+Rutas, os, glob
+El punto “.” indica la carpeta en la que estamos parados
+cd ../ se usa para moverse una carpeta hacia atras
+
+os.mkdir(“ruta”): se usa para crear una carpeta en la ruta indicada. Permite crear una carpeta en cualquier lugar de la computadora aunque no estemos ahi
+os.chdir(“ruta”): nos permite movernos de carpeta hasta la ruta indicada
+Por ejemplo: os.mkdir(“../Escritorio/Carpeta”)
+ls -l se ve en forma de lista
+ls -lh se ve el peso
+
+
+Algo que resulta muy útil es poder acceder a los archivos que hayan en una determinada carpeta sin conocer sus nombres en particular, o acceder a un grupo de estos archivos que tengan algo en común (que todos tengan la misma extensión por ejemplo), más aún si son archivos que el programa genera en su ejecución, de manera de que a priori no los tenemos. Para esto podemos usar dos herramientas, el método listdir de la biblioteca os y el método glob de la biblioteca glob. Con el primero obtenemos una lista de todos los archivos que se encuentran en una carpeta, mientras que con el segundo, además de esto, tenemos la posibilidad de listar archivos específicos. Es decir:
+>>> import os
+>>> import glob
+>>> os.listdir()
+['Ej1.py', 'Ej3.py', 'archivo2.txt', 'Ej2.py', 'Ej4.py', 'documento.txt', 'Ej5.py'...]
+>>> glob.glob("*")
+['Ej1.py', 'Ej3.py', 'archivo2.txt', 'Ej2.py', 'Ej4.py', 'documento.txt', 'Ej5.py'...]
+>>> glob.glob("*.py")
+['Ej1.py', 'Ej3.py', 'Ej2.py', 'Ej4.py', 'Ej5.py'...]
+Esto solo te da el nombre del archivo, no podes hacer mas nada
+glob.glob (“*”) hace lo mismo que el listdir
+Pero el glob te deja poner que queres q te devuelva, por ej todo lo q es .py : 
+glob.glob (“*.py”)
+Ejercicio clase 2: 
+Escribir un script en el cual debemos movernos a la carpeta Informes y obtener los archivos *.txt que hayan allí. Por cada archivo hay que obtener, por un lado, cuántas veces aparece la palabra "estado" y por otro lado la cantidad de líneas. Por último, hay que crear una carpeta que se llame Apellidos, donde hay que crear un archivo llamado Lista.txt que contenga en cada línea la primer línea de cada archivo .txt obtenidos anteriormente.
+
+PARA PODER USAR EL FOR HAY QUE PONER LO QUE VOY A USAR EN UNA VARIABLE, POR EJ:
+TXT = GLOB.GLOB…………..
+
+SI PONES ALGO = [], te va a devolver los valores de toda la lista, no hay que poner igual a 0
+
+No se puede usar el readlines para contar la cantidad de veces q aparece una palabra pq si aparece mas de una vez por linea no te la cuenta, sirve para ver si esta 1 o 0, mas de eso no.
+
+for se usa para recorrer todos los archivos
+os.mkdir para crear una  carpeta
+ primer_linea = []   para crear una lista
+
+ejemplos de funciones de manejo de archivos
+def contar_palabras(archivo):
+    with open(archivo, 'r') as f:
+        contenido = f.read()
+        palabras = contenido.split()
+        return len(palabras)
+Explicación del código:
+
+La función contar_palabras toma como argumento el nombre del archivo a contar.
+Se utiliza la declaración with open() para abrir el archivo en modo lectura ('r').
+Se utiliza f.read() para leer todo el contenido del archivo y guardarlo en una cadena de texto llamada contenido.
+Se utiliza contenido.split() para dividir el contenido en una lista de palabras.
+Finalmente, se utiliza len(palabras) para devolver el número de elementos en la lista de palabras.
+
+cuando hay un archivo q leer y otro de salida, en el def hay q poner los 2, despues hay q hacer dos with open, el primero con el archivo de salida(“a”) y el segundo con el archivo q tenes q leer (“r”). despues poner q lea el archivo 1(texto = archivo1.read()) y q haga lo q pida la funcion con el archivo 2 (texto = texto.replace("\n", ""))
+

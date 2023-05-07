@@ -75,6 +75,54 @@ import os, glob, sys
 #         a3.write(a1.read() + a2.read())
 # juntar_archivos("documento","documento2","documento3")
 
+#ej 9
+#import re
+
+#def obtener_frecuencias(archivo):
+    # Abrir el archivo y leer su contenido
+    #with open(archivo, "r") as f:
+    #    texto = f.read()
+    
+    # Obtener todas las palabras en el texto usando una expresión regular
+    #palabras = re.findall(r'\b\w+\b', texto)
+    
+    # Obtener la cantidad total de palabras
+    #total_palabras = len(palabras)
+    
+    # Crear un diccionario para almacenar las frecuencias de cada palabra
+    #frecuencias = {}
+    
+    # Recorrer todas las palabras y actualizar su frecuencia en el diccionario
+    #for palabra in palabras:
+    #    if palabra in frecuencias:
+    #        frecuencias[palabra] += 1
+    #    else:
+    #        frecuencias[palabra] = 1
+    
+    # Calcular la frecuencia de cada palabra y guardarla en el diccionario
+    #for palabra in frecuencias:
+    #    frecuencias[palabra] = frecuencias[palabra] / total_palabras
+    
+    # Retornar el diccionario de frecuencias
+    #return frecuencias
+
+#ej 10
+#def func10(path_a_carpeta_dada, path_a_resultado):
+#   os.chdir(path_a_carpeta_dada)
+#     # Crear la carpeta de resultado si no existe
+#    if not os.path.exists(path_a_resultado):
+#        os.makedirs(path_a_resultado)
+#    
+#    # Crear el archivo donde se escribirá el contenido de los archivos .txt
+#    archivo_resultado = open(os.path.join(path_a_resultado, "resultado.txt"), "w")
+#     # Recorrer los archivos .txt y agregar su contenido al archivo de resultado
+#    lista_txt= glob.glob("*.txt")
+#    for txt in lista_txt:
+#        with open(txt, "r") as archivo_txt:
+#            archivo_resultado.write(archivo_txt.read())
+#    
+#        # Cerrar el archivo de resultado
+#    archivo_resultado.close()
 
 
 # COMO CREAR ARCHIVOS

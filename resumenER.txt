@@ -1,0 +1,104 @@
+Gitignore: se genera un archivo que se llame “.gitignore”, y que contenga todo lo que no quieras subir a github (pones directamente el nombre del archivo que no queres que se suba, o la carpeta)
+
+Expresiones regulares
+Se usa para hacer búsquedas de texto muy específicas sin saber que te vas a encontrar en el texto que lo estás yendo a buscar. También se usa mucho para validar cosas, por ejemplo para saber si un mail es válido o no
+Para la computadora todo se puede traducir como un caracter:
+\s espacio
+/s+ muchos espacios
+
+Las expresiones regulares son patrones de texto escritos con un código en particular.
+Las expresiones regulares son cadenas de caracteres basadas en reglas sintácticas, que permiten describir secuencias de caracteres. Es decir es un criterio para buscar, capturar o reemplazar texto utilizando patrones. Estas son una herramienta poderosa a la hora de hacer búsquedas sofisticadas en Strings de forma simple.
+Las expresiones regulares se pueden concatenar para formar nuevas expresiones regulares; si, por ejemplo, A y B son expresiones regulares, AB también es una expresión regular.
+Los metacaracteres son caracteres especiales que, dependiendo del contexto, tienen un significado especial para las expresiones regulares.
+
+Existen lo que se conoce como metacaracteres delimitadores, que nos permitirán delimitar dónde queremos buscar los patrones de búsqueda. Entre ellos tenemos:
+^inicio de linea
+$fin de lines
+\A inicio de texto
+\Z fin de texto
+. coincide con cualquier caracter en una linea determinada
+Ya vimos que en programación suele ser útil repetir la ejecución de porciones de código. Las expresiones regulares nos permiten no solo delimitar la porción de texto donde deseamos buscar, sino que también permite repitir cierta cantidad de veces una busqueda dada. Para ello se utilizan los metacaracteres cuantificadores:
+* cero o mas
++ una o mas
+? cero o una
+{n} n veces
+\w caracter alfanumerico
+\d caracter numerico
+\s un espacio de cualquier tipo (espacio, salto de linea, etc)
+Si pones la letra en a¿mayuscula en estos 3 ultimos casos, te da lo opuesto
+[aA-zZ]{3,6} : ahi te pueden aparecer tanto minuscula como mayuscula
+
+Si hago un import y no esta instalada hay que poner: pip install (nombre de la biblioteca)
+
+re te permite buscar patrones dentro de un texto
+re.search(patron, texto): te matchea el primero que aparece, en cualquier parte del texto
+re.match: busca que este al principio del texto. si busco numeros en “hola 123 es” no te va a dar match pq no estan al principio, conviene usar un findall en ese caso
+re.findall: te da una lista con todas las apariciones de lo que le pasaste
+El split se usa para separar un texto por algun caracter en particular
+
+Ej parcial: hay una tabla y hay que extraer todos los mails que son yahoo y suplantarlo con gmail. Ahí hay que hacer una expresión regular
+
+.group : te agrupa el string del rdo q yo le pase
+re.search(patron,texto).group: hace que puedas ver el string que resulta de la búsqueda que hicimos
+a(.*)b: significa todo lo que esta entre a y b
+.group(0): es como hacer group(), te da el rdo incluyendo lo que yo estaba buscando. Incluye los “extremos”
+.group(1): no incluye lo que yo le paso
+La función sub permite reemplazar todos las ocurrencias del patrón por otro patrón en un String. Te cambia lo que vos pones en patron por otra cosa que le indiques
+
+CLASE 5 practica
+La barra invertida se usa para caracteres especiales pero a veces la queres usar como carácter normal. Lo mas facil es usar raw string, r´\n´
+
+
+import re 
+if re.search (patron, texto) is not none: eso quiere decir q no este vacio
+       bloque de codigo
+
+\b: quiere decir cualquier cosa q no sean letras ni numeros. Es util para separar palabras
+
+Unión de rangos
+Los rangos, como ya vieron, es una manera abreviada de escribir una serie de caracteres los cuales van formar parte de nuestra expresión regular para buscarlos o ignorarlos. Para esto simplemente ponían el inicio y el fin del rango entre corchetes y separados por un guión ([a-z] para todas las letras en minúscula) y para ignorar el rango utilizaban el carácter ^ ([^a-z] cualquier cosa excepto las letras minúsculas), sin embargo, ¿qué pasa cuando queremos buscar cosas que incluyan a más de un rango? Como por ejemplo, podríamos querer buscar todos los caráteres alfabéticos sean minúsculas o mayúsculas. En este caso los rangos se deben escribir uno seguido del otro sin separación alguna, dentro de los corchetes: [a-zA-Z]
+EJERCICIOS EXPRESIONES REGULARES
+1- Escribí un programa que verifique si un string tiene al menos un carácter permitido. Estos caracteres son a-z, A-Z y 0-9.
+
+
+return bool: es para que te de verdadero o falso
+ej 3: con el * se pregunta su algo esta 0 o mas veces
+con el + si esta 1 o mas veces
+El metacaracter afecta a lo q esta a la izquierda
+.? cualquier caracter 0 o 1 vez
+.*? que mire los matches internos
+P\w* palabra que empieza con P y que la tiene q seguir cualquier caracter alfanumerico 0 o mas veces
+t.* -- que empieza con una t y lo siga cualquier cosa
+t\D* -- que empieza con una t y lo siga cualquier cosa menos numeros. SI NO LE AGREGO UN $ AL FINAL, PASA A LA SIGUIENTE LINEA. CON EL $ CORTA AL FINAL DE LA LINEA
+"\b\w*[áéíóú]\w*\b" -- para buscar palabras con tilde
+"[áéíóúÁÉÍÓÚ]*\w*[áéíóú]\w*"   palabras que empiezan o tienen tilde
+-(.*?)-  todo lo q este entre guiones
+
+
+exp reg
+Es importante notar que si se quiere buscar un guión debe colocarse al principio o al final de la clase. Es decir, inmediatamente después del corchete izquierdo o inmediatamente antes del corchete derecho; o, en su defecto, escaparse. Si no se hace de esta forma, el motor de expresiones regulares intentará crear un rango y la expresión no funcionará como debe (o dará un error)
+.* : cualquier cadena, de cualquier largo (incluyendo una cadena vacía)
+[a-z]{3,6}: entre 3 y 6 letras minúsculas
+\d{4,}: al menos 4 dígitos
+.*hola!?: una cadena cualquiera, seguida de hola, y terminando (o no) con un !
+
+patron_fecha = r'\d{2}-\d{2}-\d{4}'
+patron_url = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+'
+patron_email = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
+Obtené las substrings y las posiciones de estas en una string dada considerando que las substrings están delimitadas por los caracteres @ o &.
+import re
+
+# Definir la string
+s = "Esta es una string @con@ varias &substrings& delimitadas por @ y &"
+
+# Buscar todas las substrings y sus posiciones
+matches = re.finditer(r"[@&][^@&]*[@&]", s)
+substrings = [match.group() for match in matches]
+positions = [match.start() for match in matches]
+
+# Imprimir las substrings y sus posiciones
+print("Substrings:", substrings)
+print("Posiciones:", positions)
+
+En este ejemplo, la expresión regular [@&][^@&]*[@&] busca cualquier cadena que comience con el caracter "@" o "&", seguida de cero o más caracteres que no sean "@" o "&" (esto se indica con la clase de caracteres [^@&]*) y que termine con el caracter "@" o "&". La función re.finditer() busca todas las coincidencias en la string s y devuelve un iterador que se puede usar para obtener los objetos Match correspondientes a cada coincidencia. Luego, las substrings y las posiciones se almacenan en dos listas separadas, que se imprimen en la consola con la función print().

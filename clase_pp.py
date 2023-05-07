@@ -1,5 +1,5 @@
 #ej tipo parcial de manejo de archivos
-#definir un procedimeinto q lea los atchivos txt q esten la carpeta marzo y copie la primera linea de cada uno en un archivo dentro de la carpeta resultados (que debe estar dentro de new)
+#definir un procedimeinto q lea los archivos txt q esten la carpeta marzo y copie la primera linea de cada uno en un archivo dentro de la carpeta resultados (que debe estar dentro de new)
 import os, glob
 #pasos: 1- movemos a marzo 2- extraemos los .txt 3- leemos las primeras primeras_lineas 4- hacemos carpeta de salida 5- hacer archivo 6- poner lineas en archivo nuevo
 

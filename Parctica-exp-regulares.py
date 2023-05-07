@@ -2,7 +2,7 @@
 import re 
 
 def caracteres_permitidos(string):
-    return bool(re.search('[a-zA-Z0-9.]',string))
+    return bool(re.search('[a-zA-Z0-9.]',string))  #yo le pondria un + afuera de los [] y sacaria el '.'
 
 #ej 2
 import re 
@@ -54,10 +54,35 @@ def palabras_unidas(string):
         return "patron no encontrado"
 print(palabras_unidas("hola_hola"))
 
+#ej 5
+import re
+
+def starts_with_number(string, number):
+    pattern = "^" + str(number) + "\d*"
+    return bool(re.match(pattern, string))
+
+# Ejemplo de uso
+string = "123abc"
+number = 1
+if starts_with_number(string, number):
+    print("El string comienza con el número", number)
+else:
+    print("El string no comienza con el número", number)
+
+#ej6
+
+
+#ej 7
+
+def func7(string):
+    return re.match('^[a-zA-Z0-9\s]+$', string)
+string = "Este string es valido"           #tener cuidado con los acentos, sino no te da
+print(func7(string))
+
 #ej 8
 import re
 def extraer_numero(string):
-    resultado = re.split("\D+", string)
+    resultado = re.split("\d+", string)
     for elemento in resultado:
         print(elemento)
 
@@ -74,7 +99,7 @@ print(entre_guiones(string))
 import re
 
 def get_substr(string):
-return re.findall("[@|&](.*?)[@|&]")
+    return re.findall("[@|&](.*?)[@|&]")
 
  
 #EJERCICIO 10
@@ -88,13 +113,39 @@ print(get_substr(string10))
 #ej 11
 import re
 
-def dos_P(lista):
-    for elemento in lista:
-        resultado = re.match("(P\w*)\W(P\w*)", elemento)
+def dos_P(lista_strings):
+    for elemento in lista_strings:
+        resultado = re.match("(P\w*)\s+\w+\s+(P\w*)", elemento)
         if resultado is not None:
             print(resultado.group())
+print(dos_P(lista_strings))
     
-lista 
+lista_strings = ["Práctica o  Python", "Práctica C++", "Práctica Fortran"] 
+
+#ej 12
+import re
+
+texto = "Este_es un: ejemplo con espacios y:guiones_bajos"
+
+nuevo_texto = re.sub("[ _:]+", "|", texto)
+
+print(nuevo_texto)
+
+#ej 13
+import re
+
+texto = "Este_es un: ejemplo con espacios y:guiones_bajos"
+
+nuevo_texto = re.sub("[^a-zA-Z0-9]*[^a-zA-Z0-9]([^a-zA-Z0-9]*)", "__", texto, count = 2)
+
+print(nuevo_texto)
+
+#ej 14
+texto = "Este_es un: ejemplo con espacios y:guiones_bajos"
+
+nuevo_texto = re.sub("[\s\t]", ";", texto)
+
+print(nuevo_texto)
 
 #ej15
 import re 

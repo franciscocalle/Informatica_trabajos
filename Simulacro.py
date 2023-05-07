@@ -110,7 +110,7 @@ class PacMan:
     #     self.puntos += 8
     #     elif fantasma == "verde":
     #     self.puntos += 6
-    #     elif fantasma == "naranje":
+    #     elif fantasma == "naranja":
     #     self.puntos += 4
     #     elif fantasma == "rojo":
     #     self.puntos += 2
@@ -118,7 +118,7 @@ class PacMan:
 
     #otra manera
     def comer_fantasma(self, fantasma, color):
-        self.puntos += fantasmas.puntos_color(color)
+        self.puntos += fantasma.puntos_color(color)
     class Fantasma:
         def __init__(self):
             self.fantasma = {"rosa": 8, "verde": 6, "naranja":4, "rojo":2}
