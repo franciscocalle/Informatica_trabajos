@@ -1,0 +1,81 @@
+Programación orientada a objetos
+
+1. Paradigmas de Programación Un paradigma de programación es un conjunto de ideas que describe una forma de entender la construcción de programa. Estas ideas nos permiten pensar y estructurar el código de distintas formas. Ninguna forma es mejor que otra,si no que son útiles o no para una circunstancia dada o para resolver un problema dado. Existen lenguajes que se concentran en las ideas de un único paradigma así como hay otros que permiten la combinación de ideas provenientes de distintos paradigmas.
+
+2. Programación Orientada a Objetos En particular el paradigma de Programación Orientada a Objetos (POO) es un estilo o una forma de pensar los programas en la cual se estructura un programa construyendo piezas simples y reutilizables de código para crear instancias individuales de objetos.
+
+Un programa basado en este paradigma es un conjunto de objetos que interactúan entre sí en un ambiente mandándose mensajes para lograr un objetivo determinado.
+Se basa en pensar el sw y las herramientas como si estuviesen formadas por objetos, un objeto es aquello con lo cual me puedo comunicar y entiende msjs. Además, el objeto sabe que tiene ciertas características
+
+Si te tira NONE, significa que lo hizo pero que no tiene nada para mostrarte. No significa que rompe
+
+Sabemos que pepita es un objeto individual/unico, en particular es un objeto de la clase golondrinas. Que entiende mensajes (los que las golondrinas entienden) y que tiene las caracteristicas de una golondrina (atributos)
+
+Clase: es el gran grupo que engloba a objetos. Conjunto abstracto de características que te definen a los objetos
+Instancia: individuos que forman el conjunto
+Cuando le damos órdenes a los objetos, lo hacen (si pueden), entonces algo  en su estado cambia. En el caso de pepita era la energia
+Estado: esta dado por el conjunto de sus atributos. Puede cambiar con el tiempo, puede ser mas de uno. 
+Aun con distintos estados, los objetos pueden entender los mismos metodos (mensajes)
+Los objetos conviven en el ambiente
+
+Hay objetos que entienden los mismos mensajes aunque no sean de la misma clase
+Los mensajes que entienden los objetos se llaman interfaz (conjunto de mensajes que entienden)
+Los objetos que comparten su interfaz son polimórficos. Pueden serlo total o parcial
+Los objetos no saben si son o no polimórficos, eso nos sirve a nosotros. Para ver polimorfismo necesitamos un observador u otro actor.
+
+Codigo para crear clase: 
+Class Nombre: siempre va en mayuscula el nombre de la clase
+self se usa para hacer algo sobre uno mismo
+def _init_ (self, energia): el _init_ es el constructor del objeto. INIT es un metodo generico que te permite darle vida al objeto tal y como es
+def __init__(self, energia):
+    self.energia = energia
+*asi se genera un nuevo objeto, es el constructor
+En todos los metodos hay que poner como argumentos el self y la info extra que necesita el objeto para para poder realizar la tarea que le estamos dando (gramos, unidades)
+Para crear un objeto (instanciacion de un objeto):
+pepita = Golondrina(100)
+
+Un metodo esta dentro de una clase, la funcion no. El metodo es como si fuese una funcion pero dentro de la clase.
+
+Hacer 1,2,3 de mumuki
+
+POLIMORFISMO: hay al menos 3 participantes, la clase/objeto que envia el mensaje y al menos 2 que lo reciban. No alcanza con 2 clases que sean similares
+No hay que confundir parametro con atributo. La energia o edad son parametros (es lo que esta entre parentesis). Los atributos de una clase van a tener el self. antes, y siempre se definen en el innit de la clase.
+El cjto de atributos se denomina estado. La interfaz es el cjto de metodos o mensajes que pueden tener una clase.
+Si me preguntan el estado hay que poner: self.edad, self.altura, self.x,...
+self es un parametro especial
+
+PONER PASS CUANDO NO SE COMO COMPLETAR ALGO EN EL PARCIAL, PARA QUE NO TIRE ERROR
+LA CLASE COMO TAL TIENE PARAMETROS, SI ESTOS ESTAN DEFINIDOS EN EL INNIT, NO IMPORTA SI ESTAN ABAJO O NO
+
+
+CLASE ONLINE 21/4
+
+Herencia
+una clase es una representacion de un objeto
+el objeto en si se llama instancia (de la clase)
+los objetos tienen atributos
+el init es el constructor, que define cual es el estado inicial de ese objeto
+el self es la referencia a la instancia particular dle objeto. Hace referencia al objeto mismo
+metodo esta dentro de una clase, una funcion no, un procedimiento tampoco
+los metodos pueden retornar cosas, los procedimientos no
+funcion tiene retorno, procedimiento no
+para q hay polimorfismo tiene q haber un 3er objeto q se de cuenta q entienden los  mismos msj
+
+herencia: creas una clase madre y le pones un metodo. Y despues se lo podes heredar a la clase hija (para poder hacerlo dentro de cada clase hija, entre parentesis tenes q poner la clase madre)
+
+
+
+si tenes dos atributos relacionados, en vez de hacer una lista para cada uno, podes hacer un diccionario, lo haces con las llaves {5:40, 4:30{
+
+#ejemplos de ejs
+1-Creá una clase Notebook cuyo estado sea: marca, modelo y precio, y que tenga un método que le aplique un descuento al precio, el cual tiene que recibir un número entero (el porcentaje de descuento) y tiene que devolver cuánto valdría esa notebook si se aplicase el descuento. Por último hay que instanciar esta clase y en algunos casos aplicar este descuento.
+
+class Notebook:
+    def __init__(self, marca, modelo, precio):
+        self.marca = marca
+        self.modelo = modelo
+        self.precio = precio
+        
+    def aplicar_descuento(self, descuento):
+        precio_con_descuento = self.precio * (100 - descuento) / 100
+        return precio_con_descuento

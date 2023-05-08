@@ -93,3 +93,37 @@ Finalmente, se utiliza len(palabras) para devolver el número de elementos en la
 
 cuando hay un archivo q leer y otro de salida, en el def hay q poner los 2, despues hay q hacer dos with open, el primero con el archivo de salida(“a”) y el segundo con el archivo q tenes q leer (“r”). despues poner q lea el archivo 1(texto = archivo1.read()) y q haga lo q pida la funcion con el archivo 2 (texto = texto.replace("\n", ""))
 
+for X in Y ---- te recorre una lista
+
+como accedo a un elemento de una lista? nombre de la lista y entre corchetes los elementos O for i in range: y desp mi_arch.write(correo[i[)
+
+for se usa para recorrer todos los archivos
+os.mkdir para crear una  carpeta
+ primer_linea = []   para crear una lista
+
+ejemplos de funciones de manejo de archivos
+def contar_palabras(archivo):
+    with open(archivo, 'r') as f:
+        contenido = f.read()
+        palabras = contenido.split()
+        return len(palabras)
+Explicación del código:
+
+La función contar_palabras toma como argumento el nombre del archivo a contar.
+Se utiliza la declaración with open() para abrir el archivo en modo lectura ('r').
+Se utiliza f.read() para leer todo el contenido del archivo y guardarlo en una cadena de texto llamada contenido.
+Se utiliza contenido.split() para dividir el contenido en una lista de palabras.
+Finalmente, se utiliza len(palabras) para devolver el número de elementos en la lista de palabras.
+
+cuando hay un archivo q leer y otro de salida, en el def hay q poner los 2, despues hay q hacer dos with open, el primero con el archivo de salida(“a”) y el segundo con el archivo q tenes q leer (“r”). despues poner q lea el archivo 1(texto = archivo1.read()) y q haga lo q pida la funcion con el archivo 2 (texto = texto.replace("\n", ""))
+
+return con 2=
+sni return 1=
+
+# formula para crear un archivo y q te ponga las primeras letras de otro archivo
+texto_leido = open("un_archivo.txt", "r").read()
+
+texto_para_escribir = texto_leido [0:6]
+
+with open("nuevo_archivo.txt","a") as mi_arch:
+    mi_arch.write(texto_para_escribir)

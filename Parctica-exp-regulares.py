@@ -118,7 +118,7 @@ def dos_P(lista_strings):
         resultado = re.match("(P\w*)\s+\w+\s+(P\w*)", elemento)
         if resultado is not None:
             print(resultado.group())
-print(dos_P(lista_strings))
+print(dos_P("lista_strings"))
     
 lista_strings = ["Práctica o  Python", "Práctica C++", "Práctica Fortran"] 
 
@@ -148,10 +148,13 @@ nuevo_texto = re.sub("[\s\t]", ";", texto)
 print(nuevo_texto)
 
 #ej15
+
 import re 
 def mail_correcto(string):
-    return bool(re.search('^?\W+[.-_]?\W*@[a-z]+[.][a-z]+[.]?[a-z]?$' ,string))
-print(mail_correcto('salva-burgos@gmail.com'))
+    return bool(re.search('^\w+[-_.]?\w*@[a-z]+\.[a-z]+$' ,string))
+print(mail_correcto('salva_.9burgos@gmail.com'))
+
+
            
 
 #con el \W le indicas lo del espacio porque es un caracter no alfanumerico, lo podes hacer tambien con \S

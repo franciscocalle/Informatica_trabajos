@@ -1,0 +1,42 @@
+EJS MA 
+siempre imporat os, re, glob, sys
+* para leer un archivo:
+with open(archivo, "r") as arch1:
+
+* texto = open("hola.txt","r").readlines() #esta guarando en una lista el contenido del archivo
+* si tengo que usar split(), no puedo hacerlo directamente sobre el archivo sino que tengo hacer lo siguiente:
+# def cant_palabras(archivo):
+#     with open("hola.txt","r")as archivo:
+#         contenido = archivo.read()
+#         palabras = contenido.split()
+#         num_palabras = len(palabras)
+#     print ("Cantidad de palabras que hay:",num_palabras)
+# cant_palabras("hola.txt")
+
+* cuando tenes archivo de entrada y de salida, ya creados y tenes que hacer alguna funcion hay que:
+1- en el def poner los dos archivos y capaz algo mas que tenga q ver con la funcion
+2a- si es necesario hay q igualar un nombre a un glob.glob para obtener los archivos de un determinado tipo, por ej .txt
+3- hacer with open del archivo de salida con metodo a o w dependiendo el caso as arch1
+3a- si es necesario hay q recorrer la lista del 2a, es decir, hay que hacer for archivo in nombre:
+4- hacer with open del archivo de entrada con metodo r as arch2
+5- igualar un nombre1 a arch2.read --- arch2 es el del segundo with open
+6- igual otro nombre2(ver si otro o el mismo que antes) a la funcion que pide el problema(readline, readlines, findall)
+7- poner arch1.write(nombre1)
+8a- si se trata de una lista, en el 6 hay q hacer un for x in nombre2 y despues hacer arch1.write(x)
+9- en el caso de que los archivos no esten creados, tenes que hacer un os.mkdir. se crea donde estas parado
+10- y para moverte al archivo o carpeta que desees hay que hacer un os.chdir(path)
+11- usar path relativo, no poner el usuario y eso. sino dejar directamente path_a_x 
+
+
+EJS ER
+1- import re
+2- poner el string o lista en la que vas a buscar si se cumple un patron
+3- definis la funcion que toma como parametro ese string o lista
+4- escribis la funcion, si es una lista antes hay que recorrerla
+5- la funcion casi siempre es: return re.findall/search/match/sub("patron", string)
+6- despues printeo para ver si esta bien o no
+
+re.findall(): devuelve una lista con todas las coincidencias encontradas en el texto.
+re.search(): busca la primera coincidencia en el texto y devuelve un objeto que contiene información sobre ella.
+re.match(): busca la coincidencia al principio del texto y devuelve un objeto que contiene información sobre ella.
+re.sub(): reemplaza todas las coincidencias en el texto con un nuevo valor.

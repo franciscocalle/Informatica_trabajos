@@ -102,3 +102,52 @@ print("Substrings:", substrings)
 print("Posiciones:", positions)
 
 En este ejemplo, la expresión regular [@&][^@&]*[@&] busca cualquier cadena que comience con el caracter "@" o "&", seguida de cero o más caracteres que no sean "@" o "&" (esto se indica con la clase de caracteres [^@&]*) y que termine con el caracter "@" o "&". La función re.finditer() busca todas las coincidencias en la string s y devuelve un iterador que se puede usar para obtener los objetos Match correspondientes a cada coincidencia. Luego, las substrings y las posiciones se almacenan en dos listas separadas, que se imprimen en la consola con la función print().
+
+re.search permite hacer una busqueda y localizarlo donde coincida
+re.search(“palabra que buscas”, texto en donde busca)
+star te dice el numero de caracter donde comienza lo q buscas
+end te dice el numero de caracter donde terminal o q buscas
+span te da los dos anteriores en uno
+
+findall encuentra todas las coincidencias
+Metacacacteres:
+^ que empieza con
+$ que termina con
+entre corchetes, busca algo en concreto
+
+Es importante notar que si se quiere buscar un guión debe colocarse al principio o al final de la clase. Es decir, inmediatamente después del corchete izquierdo o inmediatamente antes del corchete derecho; o, en su defecto, escaparse. Si no se hace de esta forma, el motor de expresiones regulares intentará crear un rango y la expresión no funcionará como debe (o dará un error)
+.* : cualquier cadena, de cualquier largo (incluyendo una cadena vacía)
+[a-z]{3,6}: entre 3 y 6 letras minúsculas
+\d{4,}: al menos 4 dígitos
+.*hola!?: una cadena cualquiera, seguida de hola, y terminando (o no) con un !
+
+
+El método group() (o group(0)) nos devuelve la coincidencia. Sin embargo si lo que se quiere no es encontrar un patrón en particular, sino obtener lo que está dentro de cierto patrón (por ejemplo lo que hay entre ciertas palabras) hay que modificar el patrón. Vamos a ver el siguiente ejemplo:
+
+>>> import re
+>>> texto = "Lorem ipsum dolor sit amet, consectetur ipsum elit. Amet sit amet."
+>>> patron = "ipsum(.*)sit"
+>>> re.search(patron, texto).group()
+'ipsum dolor sit amet, consectetur ipsum elit. Amet sit'
+>>> re.search(patron, texto).group(0)
+'ipsum dolor sit amet, consectetur ipsum elit. Amet sit'
+>>> re.search(patron, texto).group(1)
+' dolor sit amet, consectetur ipsum elit. Amet '
+Acá se utilizaron algunos metacaracteres, como lo son el punto (.) para indicar que puede ser cualquier carácter, y el asterísco (*) para indicar que puede haber 0 o más de estos caracteres. De esta manera obtenemos como resultado lo que se encuentre entre las palabras "ipsum" y "sit", sin embargo observen dos cosas. Primero, el string que nos devuelve tiene dentro un substring que debería haber sido encontrado en la búsqueda: "ipsum dolor sit", pero que sin embargo no aparece. Segundo, nuevamente al hacer group() o group(0) obtenemos la coincidencia, pero si nos queremos quedar con el substring que está contenido entre estas palabras debemos utilizar group(1). Ahora bien, como vimos, usar el patrón de búsqueda de esta manera prioriza los matches externos, es decir, busca el primer delimitador ("ipsum" en nuestro caso) y luego abarca todo hasta la última aparición del segundo delimitador ("sit"). Existe una forma de priorizar los matches internos y es con el metacarácter ?:
+
+>>> import re
+>>> texto = "Lorem ipsum dolor sit amet, consectetur ipsum elit. Amet sit amet."
+>>> patron = "ipsum(.*?)sit"
+>>> re.search(patron, texto).group()
+'ipsum dolor sit'
+>>> re.search(patron, texto).group(0)
+'ipsum dolor sit'
+>>> re.search(patron, texto).group(1)
+' dolor  '
+Cuando se quieren obtener todas las apariciones del patrón se utiliza el método findall el cual actúa para cada coincidencia como si devolviera el group(1), es decir devuelve en una lista la parte que se encuentra dentro de los delimitadores.
+
+>>> import re
+>>> texto = "Lorem ipsum dolor sit amet, consectetur ipsum elit. Amet sit amet."
+>>> patron = "ipsum(.*?)sit"
+>>> re.findall(patron, texto)
+[' dolor ', ' elit. Amet ']
